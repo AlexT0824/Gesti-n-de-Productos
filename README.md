@@ -374,3 +374,7 @@ Si encuentras problemas:
 2. Confirma que la base de datos esté conectada
 3. Revisa que el token no haya expirado
 4. Valida que los datos cumplan con las restricciones
+
+##Pruebas con Postman
+Link para acceder a la colección de pruebas hechas con Postman.
+https://axel-6800534.postman.co/workspace/Axel's-Workspace~012d9b79-ef1a-4c2d-8279-304483ef4655/collection/45743028-1fa7f9bc-d841-4820-a1b7-0ad9c7e015a9?action=share&source=copy-link&creator=45743028
