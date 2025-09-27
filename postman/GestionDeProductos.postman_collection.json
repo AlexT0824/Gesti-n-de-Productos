@@ -1,0 +1,1353 @@
+{
+	"info": {
+		"_postman_id": "1fa7f9bc-d841-4820-a1b7-0ad9c7e015a9",
+		"name": "GestionDeProductos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45743028",
+		"_collection_link": "https://axel-6800534.postman.co/workspace/Axel's-Workspace~012d9b79-ef1a-4c2d-8279-304483ef4655/collection/45743028-1fa7f9bc-d841-4820-a1b7-0ad9c7e015a9?action=share&source=collection_link&creator=45743028"
+	},
+	"item": [
+		{
+			"name": "UsuarioController",
+			"item": [
+				{
+					"name": "Crear nuevo usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTUwMjM2LCJleHAiOjE3NTg5NTA4MzZ9.yCt65ST0eFtwFijAmSMtg8de53TCTDiIbmcwfs6QEQA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Juan Carlos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/crear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todos los usuarios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTQ5ODcxLCJleHAiOjE3NTg5NTA0NzF9.DvgEu7BZZtHYHmMfLEzR0OWfAbdWKhkkCwYQROrbxOw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\": \"admin@tuapp.com\",\r\n    \"clave\": \"Admin123@\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar usuario por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTQ5ODcxLCJleHAiOjE3NTg5NTA0NzF9.DvgEu7BZZtHYHmMfLEzR0OWfAbdWKhkkCwYQROrbxOw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar usuario por nombre",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTQ5ODcxLCJleHAiOjE3NTg5NTA0NzF9.DvgEu7BZZtHYHmMfLEzR0OWfAbdWKhkkCwYQROrbxOw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/nombre?nombre=Super",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"nombre"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Super"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar usuario por apellido",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU5MDA4MDk3LCJleHAiOjE3NTkwMDg2OTd9.8Kd4a4rGzVCAjAuicDHwaVPzyhDtuK61-rO_CjvECnE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/apellido?apellido=Admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"apellido"
+							],
+							"query": [
+								{
+									"key": "apellido",
+									"value": "Admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar usuario por su nombre de usuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTg2NDg1LCJleHAiOjE3NTg5ODcwODV9.wUSZdgbq43MELRdKBN_uqBoMqF4hMk-qYXzxupn2Uns",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/nombre-usuario?nombreUsuario=admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"nombre-usuario"
+							],
+							"query": [
+								{
+									"key": "nombreUsuario",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar usuario por correo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTQ5ODcxLCJleHAiOjE3NTg5NTA0NzF9.DvgEu7BZZtHYHmMfLEzR0OWfAbdWKhkkCwYQROrbxOw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/correo?correo=admin@tuapp.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"correo"
+							],
+							"query": [
+								{
+									"key": "correo",
+									"value": "admin@tuapp.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar rango fecha de creacion",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU5MDA4MzgxLCJleHAiOjE3NTkwMDg5ODF9.ZjapL5lo6GYKweYWNG6VjZB73fWKODhrnJeG5PrgIfA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/rango-fecha-creacion?inicio=2025-09-26T23:51:00.609000&fin=2025-09-27T00:17:48.571000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"rango-fecha-creacion"
+							],
+							"query": [
+								{
+									"key": "inicio",
+									"value": "2025-09-26T23:51:00.609000"
+								},
+								{
+									"key": "fin",
+									"value": "2025-09-27T00:17:48.571000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar rango ultimo ingreso",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTg4MzM3LCJleHAiOjE3NTg5ODg5Mzd9.CIp63MDAHcpMD73NLGHVp1K-eV48duOHiTgUMugQrFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/rango-ultimo-ingreso?fechaUltimoIngreso=2025-09-26T23:51:00.609000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"rango-ultimo-ingreso"
+							],
+							"query": [
+								{
+									"key": "fechaUltimoIngreso",
+									"value": "2025-09-26T23:51:00.609000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTg5MjIyLCJleHAiOjE3NTg5ODk4MjJ9.ZWhN-VJlygMjQzPD8v6PdrsOzxys1CEALKLqHLX2P0A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"estado\": \"ACTIVO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/actualizar/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"actualizar",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar clave",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTg4MzM3LCJleHAiOjE3NTg5ODg5Mzd9.CIp63MDAHcpMD73NLGHVp1K-eV48duOHiTgUMugQrFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clave\": \"nuevaContraseña123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/cambiar-clave/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"cambiar-clave",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar usuario por id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTg4NjQ5LCJleHAiOjE3NTg5ODkyNDl9.7zlq5OWr4l57NMe62MD2BL-Pf76vessl714c__wtqR8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/desactivar/id/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"desactivar",
+								"id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar usuario por su nombre de usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTg5MjIyLCJleHAiOjE3NTg5ODk4MjJ9.ZWhN-VJlygMjQzPD8v6PdrsOzxys1CEALKLqHLX2P0A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/desactivar/nombre-usuario?nombreUsuario=juanp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"desactivar",
+								"nombre-usuario"
+							],
+							"query": [
+								{
+									"key": "nombreUsuario",
+									"value": "juanp"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar usuario por correo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTg5MjIyLCJleHAiOjE3NTg5ODk4MjJ9.ZWhN-VJlygMjQzPD8v6PdrsOzxys1CEALKLqHLX2P0A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/desactivar/correo?correo=tu_email@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"desactivar",
+								"correo"
+							],
+							"query": [
+								{
+									"key": "correo",
+									"value": "tu_email@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductosController",
+			"item": [
+				{
+					"name": "Crear producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTk0MTE5LCJleHAiOjE3NTg5OTQ3MTl9.BbYgT7tIRAHLLZS8bbSTgJMPXpQ65U1F9poeWT0Y8BE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"iPhone 15 Pro\",\r\n    \"categorias\": \"ELECTRONICA\",\r\n    \"costo\": 800.00,\r\n    \"precio\": 999.00,\r\n    \"listaTags\": \"smartphone,apple,pro,5g\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/crear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar producto por id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU5MDA3NTU1LCJleHAiOjE3NTkwMDgxNTV9.zZ2GvVgqLynvl4ZpZhjIzxDQWY5wboWbitFAdMjarac",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar producto por nombre",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTk1OTE2LCJleHAiOjE3NTg5OTY1MTZ9.MTfvP7-iubyU9eFrmBlIaAL1UUgA4fziIQd47ugw6Yg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/nombre?nombre=Chips de papa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"nombre"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Chips de papa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar producto por estado",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTk1OTE2LCJleHAiOjE3NTg5OTY1MTZ9.MTfvP7-iubyU9eFrmBlIaAL1UUgA4fziIQd47ugw6Yg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/estado?estado=ACTIVO",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"estado"
+							],
+							"query": [
+								{
+									"key": "estado",
+									"value": "ACTIVO"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar producto por fecha de creacion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTk3MTYxLCJleHAiOjE3NTg5OTc3NjF9.T-iYmxTUnPEHp3mapqZmoTycpw2NmQkgrpZh5779Xtw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/rango-fecha-creacion?inicio=2025-09-27T00:00:00.000000&fin=2025-09-27T13:58:18.866666",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"rango-fecha-creacion"
+							],
+							"query": [
+								{
+									"key": "inicio",
+									"value": "2025-09-27T00:00:00.000000"
+								},
+								{
+									"key": "fin",
+									"value": "2025-09-27T13:58:18.866666"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar producto por fecha de actualizacion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTk5MDE5LCJleHAiOjE3NTg5OTk2MTl9.jweGL4foGc7Aghndz4GCWbFT_wHz3MUr61OsN2iSduE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/rango-fecha-actualizacion?fechaUltimaActualizacion=2025-09-27T13:16:47.243000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"rango-fecha-actualizacion"
+							],
+							"query": [
+								{
+									"key": "fechaUltimaActualizacion",
+									"value": "2025-09-27T13:16:47.243000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar producto por categoria",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTk2MjE3LCJleHAiOjE3NTg5OTY4MTd9.K9ykVuDJaXcMPLuAYIrS6zUZhJvprjqrJRa96ypcBbE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/categoria?categoria=ALIMENTACION",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"categoria"
+							],
+							"query": [
+								{
+									"key": "categoria",
+									"value": "ALIMENTACION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar producto por precio",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTk2MjE3LCJleHAiOjE3NTg5OTY4MTd9.K9ykVuDJaXcMPLuAYIrS6zUZhJvprjqrJRa96ypcBbE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/precio?min=1.0&max=600",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"precio"
+							],
+							"query": [
+								{
+									"key": "min",
+									"value": "1.0"
+								},
+								{
+									"key": "max",
+									"value": "600"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar producto por id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTk2OTU3LCJleHAiOjE3NTg5OTc1NTd9.dvJkj_vrcolivMPFVfDcLTOXnPOAtsrqdVmvIInuHoM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"estado\": \"ACTIVO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/actualizar/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"actualizar",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar producto por id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU4OTk2OTU3LCJleHAiOjE3NTg5OTc1NTd9.dvJkj_vrcolivMPFVfDcLTOXnPOAtsrqdVmvIInuHoM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/desactivar/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"desactivar",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IniciarSesionController",
+			"item": [
+				{
+					"name": "Iniciar Sesion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\": \"admin@tuapp.com\",\r\n    \"clave\": \"Admin123@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CategoriaProdutosController",
+			"item": [
+				{
+					"name": "Crear categoria",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU5MDAxNDgxLCJleHAiOjE3NTkwMDIwODF9.i4L4T0FJBrE3vzUYZuPUzoSXbcP0f5gS2m1FSuzcvSs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categorias\": \"ELECTRONICA\",\r\n    \"nombre\": \"Smartphones\",\r\n    \"estado\": \"ACTIVO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/categorias/crear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todas las categorias",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU5MDAxNDgxLCJleHAiOjE3NTkwMDIwODF9.i4L4T0FJBrE3vzUYZuPUzoSXbcP0f5gS2m1FSuzcvSs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/categorias/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias",
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar categoria por id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "applicaton/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU5MDAxNDgxLCJleHAiOjE3NTkwMDIwODF9.i4L4T0FJBrE3vzUYZuPUzoSXbcP0f5gS2m1FSuzcvSs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/categorias/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por nombre y categoria",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU5MDAxNDgxLCJleHAiOjE3NTkwMDIwODF9.i4L4T0FJBrE3vzUYZuPUzoSXbcP0f5gS2m1FSuzcvSs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/categorias/buscar?nombre=Smartphones&categoria=ELECTRONICA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Smartphones"
+								},
+								{
+									"key": "categoria",
+									"value": "ELECTRONICA"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por estado",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU5MDAxNDgxLCJleHAiOjE3NTkwMDIwODF9.i4L4T0FJBrE3vzUYZuPUzoSXbcP0f5gS2m1FSuzcvSs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/categorias/estado?estado=ACTIVO",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias",
+								"estado"
+							],
+							"query": [
+								{
+									"key": "estado",
+									"value": "ACTIVO"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar categoria por id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU5MDA0MTI5LCJleHAiOjE3NTkwMDQ3Mjl9.VD2s99v6fI2jhxo087qkwBVn1CxX4_qZBAHgQmnP96Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"estado\": \"ACTIVO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/categorias/actualizar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias",
+								"actualizar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar categoria por id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0dWFwcC5jb20iLCJyb2xlcyI6IkFETUlOIiwiaWF0IjoxNzU5MDA0MTI5LCJleHAiOjE3NTkwMDQ3Mjl9.VD2s99v6fI2jhxo087qkwBVn1CxX4_qZBAHgQmnP96Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/categorias/desactivar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias",
+								"desactivar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
