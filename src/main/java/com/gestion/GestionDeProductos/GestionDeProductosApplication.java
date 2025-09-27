@@ -21,7 +21,6 @@ public class GestionDeProductosApplication {
 	public CommandLineRunner init(UsuariosRepository usuariosRepository, PasswordEncoder encoder) {
 		return args -> {
 			try {
-				// Verificar si ya existe el admin
 				if (!usuariosRepository.existsByCorreo("admin@tuapp.com")) {
 					Usuarios admin = new Usuarios();
 					admin.setNombre("Super");
@@ -34,14 +33,14 @@ public class GestionDeProductosApplication {
 					admin.setBloqueado(false);
 					admin.setIntentosLogin(0);
 					usuariosRepository.save(admin);
-					System.out.println(">>> ✅ Admin creado por defecto <<<");
-					System.out.println(">>> 📧 Correo: admin@tuapp.com");
-					System.out.println(">>> 🔑 Contraseña: Admin123@");
+					System.out.println("--Admin creado por defecto");
+					System.out.println("--Correo: admin@tuapp.com");
+					System.out.println("--Contraseña: Admin123@");
 				} else {
-					System.out.println(">>> ℹ️  Admin ya existe en la base de datos <<<");
+					System.out.println("--Admin ya existe en la base de datos");
 				}
 			} catch (Exception e) {
-				System.err.println(">>> ❌ Error al crear admin: " + e.getMessage());
+				System.err.println("--Error al crear admin: " + e.getMessage());
 			}
 		};
 	}
