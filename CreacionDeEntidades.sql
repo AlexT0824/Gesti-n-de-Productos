@@ -1,0 +1,35 @@
+CREATE TABLE Usuarios (
+    id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    nombre NVARCHAR(100) NOT NULL,
+    apellido NVARCHAR(100) NOT NULL,
+    nombreUsuario NVARCHAR(30) NOT NULL,
+    correo NVARCHAR(255) NOT NULL UNIQUE,
+    clave NVARCHAR(255) NOT NULL,
+    fechaCreacionUser DATETIME2 NOT NULL DEFAULT GETDATE(),
+    fechaUltimoIngreso DATETIME2 NOT NULL DEFAULT GETDATE(),
+    intentosLogin INT NOT NULL DEFAULT 0,
+    bloqueado BIT NOT NULL DEFAULT 0,
+    roles NVARCHAR(50) NOT NULL,
+    estado NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Productos (
+    id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    nombre NVARCHAR(100) NOT NULL,
+    categorias NVARCHAR(50) NOT NULL,
+    costo FLOAT NOT NULL,
+    precio FLOAT NOT NULL,
+    listaTags NVARCHAR(255) NULL,
+    fechaCreacion DATETIME2 NOT NULL DEFAULT GETDATE(),
+    fechaUltimaActualizacion DATETIME2 NOT NULL DEFAULT GETDATE(),
+    estado NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE CategoriaProductos (
+    id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    categorias NVARCHAR(50) NULL,
+    nombre NVARCHAR(100) NOT NULL UNIQUE,
+    estado NVARCHAR(50) NOT NULL,
+    fechaCreacionProducto DATETIME2 NOT NULL DEFAULT GETDATE(),
+    fechaUltimaActualizacion DATETIME2 NOT NULL DEFAULT GETDATE()
+);
