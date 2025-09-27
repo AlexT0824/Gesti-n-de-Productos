@@ -11,11 +11,19 @@ INSERT INTO categoria_productos (categorias, nombre, estado, fecha_creacion_prod
 VALUES
 ('ELECTRONICA', 'Celulares', 'ACTIVO', GETDATE(), GETDATE()),
 ('HOGAR', 'Electrodomésticos', 'ACTIVO', GETDATE(), GETDATE()),
-('ALIMENTOS', 'Snacks', 'ACTIVO', GETDATE(), GETDATE());
+('ALIMENTACION', 'Snacks', 'ACTIVO', GETDATE(), GETDATE());
 
 -- Datos para Productos.
 INSERT INTO productos (nombre, categorias, costo, precio, lista_tags, estado, fecha_creacion, fecha_ultima_actualizacion)
 VALUES
-('iPhone 14', 'Celulares', 700, 950, 'smartphone,apple,ios', 'ACTIVO', GETDATE(), GETDATE()),
-('Televisor LG 55"', 'Electrodomésticos', 400, 600, 'tv,led,lg', 'ACTIVO', GETDATE(), GETDATE()),
-('Chips de papa', 'Snacks', 1, 2.5, 'snack,papas,comida', 'ACTIVO', GETDATE(), GETDATE());
+('iPhone 14', 'ELECTRONICA', 700, 950, 'smartphone,apple,ios', 'ACTIVO', GETDATE(), GETDATE()),
+('Televisor LG 55"', 'ELECTRODOMESTICOS', 400, 600, 'tv,led,lg', 'ACTIVO', GETDATE(), GETDATE()),
+('Chips de papa', 'ALIMENTACION', 1, 2.5, 'snack,papas,comida', 'ACTIVO', GETDATE(), GETDATE());
+
+
+DELETE FROM usuarios;
+DBCC CHECKIDENT ('usuarios', RESEED, 0);
+DELETE FROM categoria_productos;
+DBCC CHECKIDENT ('categoria_productos', RESEED, 0);
+DELETE FROM productos;
+DBCC CHECKIDENT ('productos', RESEED, 0);

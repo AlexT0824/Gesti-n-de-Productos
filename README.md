@@ -1,38 +1,58 @@
-# 🏪 Sistema de Gestión de Productos
+# Sistema de Gestión de Productos
 
-API REST para la gestión de productos, categorías y usuarios con autenticación JWT.
+Este es un sistema de gestión de productos desarrollado con Spring Boot que permite administrar productos, categorías y usuarios con autenticación JWT.
 
-## 🚀 Inicio Rápido
+## Configuración inicial
 
-### Prerrequisitos
+Para ejecutar el proyecto necesitas:
 - Java 8 o superior
 - Maven 3.6+
-- SQL Server (o H2 para desarrollo)
+- SQL Server
 
-### Instalación
+Pasos para ejecutar:
 1. Clona el repositorio
-2. Configura la base de datos en `application.properties`
+2. Configura la conexión a la base de datos en `application.properties`
 3. Ejecuta: `mvn spring-boot:run`
 
-## 🔐 Autenticación y Autorización
+## Dependencias
 
-### Paso 1: Crear Admin Automático
-Al ejecutar la aplicación, se crea automáticamente un usuario administrador:
+El proyecto usa las siguientes dependencias principales:
 
+### Spring Boot
+- `spring-boot-starter-web` - Para crear aplicaciones web REST
+- `spring-boot-starter-data-jpa` - Para acceso a datos con JPA
+- `spring-boot-starter-security` - Para autenticación y autorización
+- `spring-boot-starter-validation` - Para validación de datos
+- `spring-boot-starter-test` - Para testing
+- `spring-boot-devtools` - Para desarrollo
+
+### Base de datos
+- `mssql-jdbc` - Driver para SQL Server
+
+### Utilidades
+- `lombok` - Para reducir código boilerplate
+- `jjwt` - Para manejo de tokens JWT
+
+### Versiones
+- Spring Boot: 2.7.13
+- Java: 1.8
+- Lombok: 1.18.30
+- JWT: 0.9.1
+
+## Autenticación
+
+El sistema usa JWT para la autenticación. Al iniciar la aplicación se crea automáticamente un usuario administrador:
+
+- Correo: admin@tuapp.com
+- Contraseña: Admin123@
+
+### Login
+Para iniciar sesión usa el endpoint:
 ```
-📧 Correo: admin@tuapp.com
-🔑 Contraseña: Admin123@
+POST /api/auth/login
 ```
 
-### Paso 2: Iniciar Sesión
-**Endpoint:** `POST /api/auth/login`
-
-**Headers:**
-```
-Content-Type: application/json
-```
-
-**Body:**
+Con el body:
 ```json
 {
     "correo": "admin@tuapp.com",
@@ -40,95 +60,82 @@ Content-Type: application/json
 }
 ```
 
-**Respuesta:**
+La respuesta incluye un token JWT que debes usar en todas las peticiones posteriores:
 ```json
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
 
-### Paso 3: Usar el Token
-Para todas las demás peticiones, incluye el token en el header:
-
+### Usar el token
+Incluye el token en el header Authorization:
 ```
-Authorization: Bearer [tu_token_aqui]
+Authorization: Bearer [tu_token]
 ```
 
-**⚠️ Importante:** El token expira en 10 minutos. Si expira, debes hacer login nuevamente.
+Nota: El token expira en 10 minutos.
 
-## 📋 API Endpoints Detallados
+## Endpoints de la API
 
-### 🔑 Autenticación
-| Método | URL | Headers | Body | Descripción |
-|--------|-----|---------|------|-------------|
-| POST | `/api/auth/login` | `Content-Type: application/json` | `{"correo": "admin@tuapp.com", "clave": "Admin123@"}` | Iniciar sesión |
+### Autenticación
+- `POST /api/auth/login` - Iniciar sesión
 
-### 👥 Usuarios (Solo ADMIN)
-| Método | URL | Headers | Parámetros | Body | Descripción |
-|--------|-----|---------|------------|------|-------------|
-| GET | `/api/usuarios/todos` | `Authorization: Bearer [token]` | - | - | Listar todos los usuarios |
-| GET | `/api/usuarios/{id}` | `Authorization: Bearer [token]` | `id` (path) | - | Obtener usuario por ID |
-| GET | `/api/usuarios/nombre` | `Authorization: Bearer [token]` | `nombre` (query) | - | Buscar por nombre |
-| GET | `/api/usuarios/apellido` | `Authorization: Bearer [token]` | `apellido` (query) | - | Buscar por apellido |
-| GET | `/api/usuarios/nombre-usuario` | `Authorization: Bearer [token]` | `nombreUsuario` (query) | - | Buscar por nombre de usuario |
-| GET | `/api/usuarios/correo` | `Authorization: Bearer [token]` | `correo` (query) | - | Buscar por correo |
-| GET | `/api/usuarios/rango-fecha-creacion` | `Authorization: Bearer [token]` | `inicio` y `fin` (query) | - | Buscar por rango de fecha |
-| GET | `/api/usuarios/rango-ultimo-ingreso` | `Authorization: Bearer [token]` | `fechaUltimoIngreso` (query) | - | Buscar por último ingreso |
-| POST | `/api/usuarios/crear` | `Authorization: Bearer [token]`<br>`Content-Type: application/json` | `correo` (query) | Ver abajo | Crear nuevo usuario |
-| PUT | `/api/usuarios/actualizar/{id}` | `Authorization: Bearer [token]`<br>`Content-Type: application/json` | `id` (path) | Ver abajo | Actualizar usuario |
-| PUT | `/api/usuarios/cambiar-clave/{id}` | `Authorization: Bearer [token]`<br>`Content-Type: application/json` | `id` (path) | `{"clave": "NuevaClave123@"}` | Cambiar contraseña |
-| PUT | `/api/usuarios/desactivar/id/{id}` | `Authorization: Bearer [token]` | `id` (path) | - | Desactivar usuario por ID |
-| PUT | `/api/usuarios/desactivar/nombre-usuario` | `Authorization: Bearer [token]` | `nombreUsuario` (query) | - | Desactivar por nombre usuario |
-| PUT | `/api/usuarios/desactivar/correo` | `Authorization: Bearer [token]` | `correo` (query) | - | Desactivar por correo |
+### Usuarios (Solo ADMIN)
+- `GET /api/usuarios/todos` - Listar todos los usuarios
+- `GET /api/usuarios/{id}` - Obtener usuario por ID
+- `GET /api/usuarios/nombre?nombre=Juan` - Buscar por nombre
+- `GET /api/usuarios/apellido?apellido=Pérez` - Buscar por apellido
+- `GET /api/usuarios/nombre-usuario?nombreUsuario=juanp` - Buscar por nombre de usuario
+- `GET /api/usuarios/correo?correo=test@example.com` - Buscar por correo
+- `GET /api/usuarios/rango-fecha-creacion?inicio=2024-01-01&fin=2024-12-31` - Buscar por rango de fecha
+- `GET /api/usuarios/rango-ultimo-ingreso?fechaUltimoIngreso=2024-01-01` - Buscar por último ingreso
+- `POST /api/usuarios/crear?correo=test@example.com` - Crear nuevo usuario
+- `PUT /api/usuarios/actualizar/{id}` - Actualizar usuario
+- `PUT /api/usuarios/cambiar-clave/{id}` - Cambiar contraseña
+- `PUT /api/usuarios/desactivar/id/{id}` - Desactivar usuario por ID
+- `PUT /api/usuarios/desactivar/nombre-usuario?nombreUsuario=juanp` - Desactivar por nombre usuario
+- `PUT /api/usuarios/desactivar/correo?correo=test@example.com` - Desactivar por correo
 
-### 📦 Productos (ADMIN/USUARIO)
-| Método | URL | Headers | Parámetros | Body | Descripción |
-|--------|-----|---------|------------|------|-------------|
-| GET | `/api/productos/{id}` | `Authorization: Bearer [token]` | `id` (path) | - | Obtener producto por ID |
-| GET | `/api/productos/nombre` | `Authorization: Bearer [token]` | `nombre` (query) | - | Buscar por nombre |
-| GET | `/api/productos/estado` | `Authorization: Bearer [token]` | `estado` (query) | - | Buscar por estado |
-| GET | `/api/productos/rango-fecha-creacion` | `Authorization: Bearer [token]` | `inicio` y `fin` (query) | - | Buscar por rango de fecha |
-| GET | `/api/productos/rango-fecha-actualizacion` | `Authorization: Bearer [token]` | `fechaUltimaActualizacion` (query) | - | Buscar por fecha actualización |
-| GET | `/api/productos/categoria` | `Authorization: Bearer [token]` | `categoria` (query) | - | Buscar por categoría |
-| GET | `/api/productos/precio` | `Authorization: Bearer [token]` | `min` y `max` (query) | - | Buscar por rango de precio |
-| POST | `/api/productos/crear` | `Authorization: Bearer [token]`<br>`Content-Type: application/json` | - | Ver abajo | Crear producto |
-| PUT | `/api/productos/actualizar/{id}` | `Authorization: Bearer [token]`<br>`Content-Type: application/json` | `id` (path) | Ver abajo | Actualizar producto |
-| PUT | `/api/productos/desactivar/{id}` | `Authorization: Bearer [token]` | `id` (path) | - | Desactivar producto |
+### Productos (ADMIN/USUARIO)
+- `GET /api/productos/{id}` - Obtener producto por ID
+- `GET /api/productos/nombre?nombre=iPhone` - Buscar por nombre
+- `GET /api/productos/estado?estado=ACTIVO` - Buscar por estado
+- `GET /api/productos/rango-fecha-creacion?inicio=2024-01-01&fin=2024-12-31` - Buscar por rango de fecha
+- `GET /api/productos/rango-fecha-actualizacion?fechaUltimaActualizacion=2024-01-01` - Buscar por fecha actualización
+- `GET /api/productos/categoria?categoria=ELECTRONICA` - Buscar por categoría
+- `GET /api/productos/precio?min=100&max=500` - Buscar por rango de precio
+- `POST /api/productos/crear` - Crear producto
+- `PUT /api/productos/actualizar/{id}` - Actualizar producto
+- `PUT /api/productos/desactivar/{id}` - Desactivar producto
 
-### 🏷️ Categorías (ADMIN/USUARIO)
-| Método | URL | Headers | Parámetros | Body | Descripción |
-|--------|-----|---------|------------|------|-------------|
-| GET | `/api/categorias/{id}` | `Authorization: Bearer [token]` | `id` (path) | - | Obtener categoría por ID |
-| GET | `/api/categorias/buscar` | `Authorization: Bearer [token]` | `nombre` y `categoria` (query) | - | Buscar por nombre y categoría |
-| GET | `/api/categorias/categorias` | `Authorization: Bearer [token]` | `categoria` (query) | - | Buscar por categoría |
-| GET | `/api/categorias/estado` | `Authorization: Bearer [token]` | `estado` (query) | - | Buscar por estado |
-| POST | `/api/categorias/crear` | `Authorization: Bearer [token]`<br>`Content-Type: application/json` | - | Ver abajo | Crear categoría |
-| PUT | `/api/categorias/actualizar/{id}` | `Authorization: Bearer [token]`<br>`Content-Type: application/json` | `id` (path) | Ver abajo | Actualizar categoría |
-| PUT | `/api/categorias/desactivar/{id}` | `Authorization: Bearer [token]` | `id` (path) | - | Desactivar categoría |
+### Categorías (ADMIN/USUARIO)
+- `GET /api/categorias/{id}` - Obtener categoría por ID
+- `GET /api/categorias/buscar?nombre=Smartphones&categoria=ELECTRONICA` - Buscar por nombre y categoría
+- `GET /api/categorias/categorias?categoria=ELECTRONICA` - Buscar por categoría
+- `GET /api/categorias/estado?estado=ACTIVO` - Buscar por estado
+- `POST /api/categorias/crear` - Crear categoría
+- `PUT /api/categorias/actualizar/{id}` - Actualizar categoría
+- `PUT /api/categorias/desactivar/{id}` - Desactivar categoría
 
-### 📊 Consultas (ADMIN/USUARIO)
-| Método | URL | Headers | Parámetros | Body | Descripción |
-|--------|-----|---------|------------|------|-------------|
-| GET | `/api/consulta/productos` | `Authorization: Bearer [token]` | - | - | Listar TODOS los productos |
-| GET | `/api/consulta/productos/nombre` | `Authorization: Bearer [token]` | `nombre` (query) | - | Buscar producto por nombre |
-| GET | `/api/consulta/productos/categoria` | `Authorization: Bearer [token]` | `categoria` (query) | - | Buscar producto por categoría |
-| GET | `/api/consulta/productos/estado` | `Authorization: Bearer [token]` | `estado` (query) | - | Buscar producto por estado |
-| GET | `/api/consulta/productos/precio` | `Authorization: Bearer [token]` | `min` y `max` (query) | - | Buscar producto por rango precio |
-| GET | `/api/consulta/categorias` | `Authorization: Bearer [token]` | - | - | Listar TODAS las categorías |
-| GET | `/api/consulta/categorias/nombre` | `Authorization: Bearer [token]` | `categorias` (query) | - | Buscar categoría por nombre |
-| GET | `/api/consulta/categorias/estado` | `Authorization: Bearer [token]` | `estado` (query) | - | Buscar categoría por estado |
+### Consultas (ADMIN/USUARIO)
+- `GET /api/consulta/productos` - Listar todos los productos
+- `GET /api/consulta/productos/nombre?nombre=iPhone` - Buscar producto por nombre
+- `GET /api/consulta/productos/categoria?categoria=ELECTRONICA` - Buscar producto por categoría
+- `GET /api/consulta/productos/estado?estado=ACTIVO` - Buscar producto por estado
+- `GET /api/consulta/productos/precio?min=100&max=500` - Buscar producto por rango precio
+- `GET /api/consulta/categorias` - Listar todas las categorías
+- `GET /api/consulta/categorias/nombre?categorias=ELECTRONICA` - Buscar categoría por nombre
+- `GET /api/consulta/categorias/estado?estado=ACTIVO` - Buscar categoría por estado
 
-## 🔧 Configuración de Postman
+## Configuración en Postman
 
-### 1. Crear Variables de Entorno
-En Postman, crea un Environment con:
-- `base_url`: `http://localhost:8080`
-- `token`: (se llenará automáticamente)
+Para probar la API puedes configurar Postman de la siguiente manera:
 
-### 2. Configurar Login
-**Request:** `POST {{base_url}}/api/auth/login`
+1. Crea un Environment con estas variables:
+   - `base_url`: `http://localhost:8080`
+   - `token`: (se llenará automáticamente)
 
-**Tests Script:**
+2. Para el login, usa este script en Tests:
 ```javascript
 if (pm.response.code === 200) {
     const response = pm.response.json();
@@ -136,16 +143,14 @@ if (pm.response.code === 200) {
 }
 ```
 
-### 3. Configurar Autorización Global
-En cada request que requiera autenticación:
-**Authorization Tab:** 
-- Type: `Bearer Token`
-- Token: `{{token}}`
+3. En cada request que requiera autenticación, configura:
+   - Authorization: Bearer Token
+   - Token: `{{token}}`
 
-## 📝 Ejemplos de Bodies para POST/PUT
+## Ejemplos de uso
 
-### 👥 Crear Usuario
-**POST** `/api/usuarios/crear?correo=test@example.com`
+### Crear Usuario
+POST `/api/usuarios/crear?correo=test@example.com`
 ```json
 {
     "nombre": "Juan",
@@ -157,8 +162,8 @@ En cada request que requiera autenticación:
 }
 ```
 
-### 👥 Actualizar Usuario
-**PUT** `/api/usuarios/actualizar/1`
+### Actualizar Usuario
+PUT `/api/usuarios/actualizar/1`
 ```json
 {
     "nombre": "Juan Carlos",
@@ -169,8 +174,8 @@ En cada request que requiera autenticación:
 }
 ```
 
-### 📦 Crear Producto
-**POST** `/api/productos/crear`
+### Crear Producto
+POST `/api/productos/crear`
 ```json
 {
     "nombre": "iPhone 15 Pro",
@@ -182,8 +187,8 @@ En cada request que requiera autenticación:
 }
 ```
 
-### 📦 Actualizar Producto
-**PUT** `/api/productos/actualizar/1`
+### Actualizar Producto
+PUT `/api/productos/actualizar/1`
 ```json
 {
     "nombre": "iPhone 15 Pro Max",
@@ -195,8 +200,8 @@ En cada request que requiera autenticación:
 }
 ```
 
-### 🏷️ Crear Categoría
-**POST** `/api/categorias/crear`
+### Crear Categoría
+POST `/api/categorias/crear`
 ```json
 {
     "categorias": "ELECTRONICA",
@@ -205,8 +210,8 @@ En cada request que requiera autenticación:
 }
 ```
 
-### 🏷️ Actualizar Categoría
-**PUT** `/api/categorias/actualizar/1`
+### Actualizar Categoría
+PUT `/api/categorias/actualizar/1`
 ```json
 {
     "categorias": "ELECTRONICA",
@@ -215,38 +220,32 @@ En cada request que requiera autenticación:
 }
 ```
 
-## 📋 Valores Válidos para Enums
+## Valores válidos
 
-### Categorias
-```
+### Categorías
 ELECTRONICA, ROPA, ALIMENTACION, HOGAR, JUGUETES, DEPORTES, LIBROS, OTROS
-```
 
 ### Estados
-```
 ACTIVO, DESACTIVO, BORRADO
-```
 
 ### Roles
-```
 USUARIO, ADMIN
-```
 
-## 📝 Ejemplos de Uso Completos
+## Ejemplos con curl
 
-### 1. Listar Todos los Usuarios
+Listar todos los usuarios:
 ```bash
 curl -X GET http://localhost:8080/api/usuarios/todos \
   -H "Authorization: Bearer [tu_token]"
 ```
 
-### 2. Buscar Usuario por Nombre
+Buscar usuario por nombre:
 ```bash
 curl -X GET "http://localhost:8080/api/usuarios/nombre?nombre=Juan" \
   -H "Authorization: Bearer [tu_token]"
 ```
 
-### 3. Crear Nuevo Usuario
+Crear nuevo usuario:
 ```bash
 curl -X POST "http://localhost:8080/api/usuarios/crear?correo=test@example.com" \
   -H "Authorization: Bearer [tu_token]" \
@@ -261,95 +260,79 @@ curl -X POST "http://localhost:8080/api/usuarios/crear?correo=test@example.com" 
   }'
 ```
 
-### 4. Listar Todos los Productos
+Listar todos los productos:
 ```bash
 curl -X GET http://localhost:8080/api/consulta/productos \
   -H "Authorization: Bearer [tu_token]"
 ```
 
-### 5. Buscar Productos por Categoría
+Buscar productos por categoría:
 ```bash
 curl -X GET "http://localhost:8080/api/consulta/productos/categoria?categoria=ELECTRONICA" \
   -H "Authorization: Bearer [tu_token]"
 ```
 
-### 6. Buscar Productos por Rango de Precio
-```bash
-curl -X GET "http://localhost:8080/api/consulta/productos/precio?min=100&max=500" \
-  -H "Authorization: Bearer [token]"
-```
+## URLs para pruebas
 
-### 7. Listar Todas las Categorías
-```bash
-curl -X GET http://localhost:8080/api/consulta/categorias \
-  -H "Authorization: Bearer [tu_token]"
-```
+### Autenticación
+- Login: `POST http://localhost:8080/api/auth/login`
 
-## 🔗 URLs Completas para Pruebas Rápidas
+### Usuarios (Solo ADMIN)
+- Listar todos: `GET http://localhost:8080/api/usuarios/todos`
+- Por ID: `GET http://localhost:8080/api/usuarios/1`
+- Por nombre: `GET http://localhost:8080/api/usuarios/nombre?nombre=Juan`
+- Por apellido: `GET http://localhost:8080/api/usuarios/apellido?apellido=Pérez`
+- Por nombre usuario: `GET http://localhost:8080/api/usuarios/nombre-usuario?nombreUsuario=juanp`
+- Por correo: `GET http://localhost:8080/api/usuarios/correo?correo=test@example.com`
+- Crear: `POST http://localhost:8080/api/usuarios/crear?correo=test@example.com`
+- Actualizar: `PUT http://localhost:8080/api/usuarios/actualizar/1`
+- Cambiar clave: `PUT http://localhost:8080/api/usuarios/cambiar-clave/1`
+- Desactivar por ID: `PUT http://localhost:8080/api/usuarios/desactivar/id/1`
+- Desactivar por nombre: `PUT http://localhost:8080/api/usuarios/desactivar/nombre-usuario?nombreUsuario=juanp`
+- Desactivar por correo: `PUT http://localhost:8080/api/usuarios/desactivar/correo?correo=test@example.com`
 
-### 🔑 Autenticación
-- **Login:** `POST http://localhost:8080/api/auth/login`
+### Productos (ADMIN/USUARIO)
+- Por ID: `GET http://localhost:8080/api/productos/1`
+- Por nombre: `GET http://localhost:8080/api/productos/nombre?nombre=iPhone`
+- Por estado: `GET http://localhost:8080/api/productos/estado?estado=ACTIVO`
+- Por categoría: `GET http://localhost:8080/api/productos/categoria?categoria=ELECTRONICA`
+- Por rango precio: `GET http://localhost:8080/api/productos/precio?min=100&max=500`
+- Crear: `POST http://localhost:8080/api/productos/crear`
+- Actualizar: `PUT http://localhost:8080/api/productos/actualizar/1`
+- Desactivar: `PUT http://localhost:8080/api/productos/desactivar/1`
 
-### 👥 Usuarios (Solo ADMIN)
-- **Listar todos:** `GET http://localhost:8080/api/usuarios/todos`
-- **Por ID:** `GET http://localhost:8080/api/usuarios/1`
-- **Por nombre:** `GET http://localhost:8080/api/usuarios/nombre?nombre=Juan`
-- **Por apellido:** `GET http://localhost:8080/api/usuarios/apellido?apellido=Pérez`
-- **Por nombre usuario:** `GET http://localhost:8080/api/usuarios/nombre-usuario?nombreUsuario=juanp`
-- **Por correo:** `GET http://localhost:8080/api/usuarios/correo?correo=test@example.com`
-- **Crear:** `POST http://localhost:8080/api/usuarios/crear?correo=test@example.com`
-- **Actualizar:** `PUT http://localhost:8080/api/usuarios/actualizar/1`
-- **Cambiar clave:** `PUT http://localhost:8080/api/usuarios/cambiar-clave/1`
-- **Desactivar por ID:** `PUT http://localhost:8080/api/usuarios/desactivar/id/1`
-- **Desactivar por nombre:** `PUT http://localhost:8080/api/usuarios/desactivar/nombre-usuario?nombreUsuario=juanp`
-- **Desactivar por correo:** `PUT http://localhost:8080/api/usuarios/desactivar/correo?correo=test@example.com`
+### Categorías (ADMIN/USUARIO)
+- Por ID: `GET http://localhost:8080/api/categorias/1`
+- Buscar: `GET http://localhost:8080/api/categorias/buscar?nombre=Smartphones&categoria=ELECTRONICA`
+- Por categoría: `GET http://localhost:8080/api/categorias/categorias?categoria=ELECTRONICA`
+- Por estado: `GET http://localhost:8080/api/categorias/estado?estado=ACTIVO`
+- Crear: `POST http://localhost:8080/api/categorias/crear`
+- Actualizar: `PUT http://localhost:8080/api/categorias/actualizar/1`
+- Desactivar: `PUT http://localhost:8080/api/categorias/desactivar/1`
 
-### 📦 Productos (ADMIN/USUARIO)
-- **Por ID:** `GET http://localhost:8080/api/productos/1`
-- **Por nombre:** `GET http://localhost:8080/api/productos/nombre?nombre=iPhone`
-- **Por estado:** `GET http://localhost:8080/api/productos/estado?estado=ACTIVO`
-- **Por categoría:** `GET http://localhost:8080/api/productos/categoria?categoria=ELECTRONICA`
-- **Por rango precio:** `GET http://localhost:8080/api/productos/precio?min=100&max=500`
-- **Crear:** `POST http://localhost:8080/api/productos/crear`
-- **Actualizar:** `PUT http://localhost:8080/api/productos/actualizar/1`
-- **Desactivar:** `PUT http://localhost:8080/api/productos/desactivar/1`
+### Consultas (ADMIN/USUARIO)
+- Todos los productos: `GET http://localhost:8080/api/consulta/productos`
+- Producto por nombre: `GET http://localhost:8080/api/consulta/productos/nombre?nombre=iPhone`
+- Producto por categoría: `GET http://localhost:8080/api/consulta/productos/categoria?categoria=ELECTRONICA`
+- Producto por estado: `GET http://localhost:8080/api/consulta/productos/estado?estado=ACTIVO`
+- Producto por precio: `GET http://localhost:8080/api/consulta/productos/precio?min=100&max=500`
+- Todas las categorías: `GET http://localhost:8080/api/consulta/categorias`
+- Categoría por nombre: `GET http://localhost:8080/api/consulta/categorias/nombre?categorias=ELECTRONICA`
+- Categoría por estado: `GET http://localhost:8080/api/consulta/categorias/estado?estado=ACTIVO`
 
-### 🏷️ Categorías (ADMIN/USUARIO)
-- **Por ID:** `GET http://localhost:8080/api/categorias/1`
-- **Buscar:** `GET http://localhost:8080/api/categorias/buscar?nombre=Smartphones&categoria=ELECTRONICA`
-- **Por categoría:** `GET http://localhost:8080/api/categorias/categorias?categoria=ELECTRONICA`
-- **Por estado:** `GET http://localhost:8080/api/categorias/estado?estado=ACTIVO`
-- **Crear:** `POST http://localhost:8080/api/categorias/crear`
-- **Actualizar:** `PUT http://localhost:8080/api/categorias/actualizar/1`
-- **Desactivar:** `PUT http://localhost:8080/api/categorias/desactivar/1`
-
-### 📊 Consultas (ADMIN/USUARIO)
-- **Todos los productos:** `GET http://localhost:8080/api/consulta/productos`
-- **Producto por nombre:** `GET http://localhost:8080/api/consulta/productos/nombre?nombre=iPhone`
-- **Producto por categoría:** `GET http://localhost:8080/api/consulta/productos/categoria?categoria=ELECTRONICA`
-- **Producto por estado:** `GET http://localhost:8080/api/consulta/productos/estado?estado=ACTIVO`
-- **Producto por precio:** `GET http://localhost:8080/api/consulta/productos/precio?min=100&max=500`
-- **Todas las categorías:** `GET http://localhost:8080/api/consulta/categorias`
-- **Categoría por nombre:** `GET http://localhost:8080/api/consulta/categorias/nombre?categorias=ELECTRONICA`
-- **Categoría por estado:** `GET http://localhost:8080/api/consulta/categorias/estado?estado=ACTIVO`
-
-## 🛠️ Resolución de Problemas
+## Problemas comunes
 
 ### Error: "Usuario ya existe"
-- El sistema valida que no haya correos duplicados
-- Si ocurre, verifica que no estés creando usuarios con el mismo correo
+El sistema no permite correos duplicados. Verifica que no estés creando usuarios con el mismo correo.
 
 ### Error: "Token inválido"
-- El token expiró (10 minutos)
-- Haz login nuevamente para obtener un nuevo token
+El token expiró (10 minutos). Haz login nuevamente.
 
 ### Error: "Acceso denegado"
-- Verifica que estés usando el header `Authorization: Bearer [token]`
-- Confirma que tu usuario tenga los permisos necesarios
+Verifica que estés usando el header `Authorization: Bearer [token]` y que tu usuario tenga los permisos necesarios.
 
 ### Resetear Base de Datos
 Si necesitas empezar desde cero:
-
 ```sql
 DELETE FROM usuarios;
 DELETE FROM productos;
@@ -359,16 +342,13 @@ DBCC CHECKIDENT ('productos', RESEED, 0);
 DBCC CHECKIDENT ('categoria_productos', RESEED, 0);
 ```
 
-## 🔒 Roles y Permisos
+## Roles y Permisos
+Para iniciar sesion: `/api/auth/login`
+Para consumir las apis de UsuarioController`/api/usuarios/**`
+Para consumir las apis de Productos`/api/productos/**` 
+Para consumir las apis de CategoriasProductos`/api/categorias/**` 
 
-| Endpoint | ADMIN | USUARIO |
-|----------|-------|---------|
-| `/api/auth/login` | ✅ | ✅ |
-| `/api/usuarios/**` | ✅ | ❌ |
-| `/api/productos/**` | ✅ | ✅ |
-| `/api/categorias/**` | ✅ | ✅ |
-
-## 📋 Validaciones
+## Validaciones
 
 ### Contraseñas
 - Mínimo 8 caracteres, máximo 20
@@ -379,15 +359,15 @@ DBCC CHECKIDENT ('categoria_productos', RESEED, 0);
 - Formato de email válido
 - Único en el sistema
 
-## 🚨 Notas Importantes
+## Notas importantes
 
-1. **No hagas múltiples "Send"** en Postman sin verificar la respuesta
-2. **El admin se crea automáticamente** al iniciar la aplicación
-3. **Los tokens expiran en 10 minutos** - planifica tus pruebas
-4. **Usa siempre el header Authorization** para endpoints protegidos
-5. **La base de datos tiene restricciones UNIQUE** - no se pueden duplicar correos
+1. No hagas múltiples "Send" en Postman sin verificar la respuesta
+2. El admin se crea automáticamente al iniciar la aplicación
+3. Los tokens expiran en 10 minutos
+4. Usa siempre el header Authorization para endpoints protegidos
+5. La base de datos tiene restricciones UNIQUE - no se pueden duplicar correos
 
-## 📞 Soporte
+## Soporte
 
 Si encuentras problemas:
 1. Verifica los logs de la aplicación
